@@ -53,11 +53,11 @@
 |   Inefficient memory utilization    | Relatively efficient memory utilization |
 | Time complexity increases with data |    Time complexity remains the same     |
 
-### [Stacks](/Practice%20Concepts/Data%20Structures/stacks.py)
+### Stacks
 
-- Linear Data Structure that follows the principle of **LIFO - Last in First Out - ** last element added to the stack is the first one to be removed.
+- Linear Data Structure that follows the principle of LIFO - Last in First Out - last element added to the stack is the first one to be removed.
 
-![](https://github.com/aish21/Algorithms-and-Data-Structures/blob/main/Resources/Animations/PUSH-POP.png)
+![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/Stack.png)
 
 - **KEY CONCEPTS**:
     - **PUSH**: Add an element to the top of the stack
@@ -72,3 +72,55 @@
     - Worst Case: O(N), where N is the number of items in the stack.
     - Space Complexity: O(1)
 
+### Queues
+
+- Linear data structure that follows **FIFO - First In First Out** rule - the item that goes in first comes out first
+
+![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/Simple_queue.png)
+
+- **KEY CONCEPTS**:
+
+  - **ENQUEUE**: Add an element to the end of the queue
+  - **DEQUEUE**: Remove and return an element from the front of the queue
+  - **PEEK**: Check the value of the first element in the queue without removing it
+  - **IsEmpty**: Check if the queue is empty
+  - **IsFull**: Check if the queue is full
+  - **FRONT**: The end of the queue from which the elements are removed
+  - **REAR**: The end of the queue from which the elements are added
+
+- Applications: CPU Scheduling, File System buffers, interrupts in real time systems
+
+- Types of Queues:
+
+  - **Simple Queue**
+
+    - Standard FIFO queue
+    - Space: O(n)
+    - Time Complexities (Enqueue, Dequeue, Peek): O(1)
+
+  - **Circular Queue**
+    ![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/cirq.jpg)
+
+    - Like regular queue, but the last element is connected to the first element, solving the limitation of non-usable empty space.
+    - Works in the process of circular increment - modulo division with the queue size
+    - Same initialization of FRONT and REAR pointer variables
+    - **ENQUEUE**: FRONT is set to 0, REAR is circularly incremented by 1, if it reaches the end, it would be at the start of the queue, then add to the position pointed to by REAR.
+    - **DEQUEUE**: Return value pointed by FRONT, circularly increase FRONT by 1, for last element, reset the FRONT and REAR values to -1
+    - IsFull conditions: FRONT == 0 && REAR == SIZE - 1, FRONT = REAR + 1
+    - Space: O(n)
+    - Time Complexities (Enqueue, Dequeue, Peek): O(1)
+
+  - **Priority Queue**
+
+    - Each element is linked with a priority value - served on the basis of their priority.
+    - If elements have the same priority, they are then served according to their order in the queue.
+    - Implemented using binary heaps (heapq in Python).
+    - Does not follow FIFO - follows rule of priority
+    - Space: O(n)
+    - Time Complexities (Enqueue, Dequeue, Peek): O(logn), O(1)
+
+  - **Deque (Double Ended Queues)**
+    ![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/double-ended-queue.png)
+    - Flexible, allowing addition and removal from both ends.
+    - Space: O(n)
+    - Time Complexities (Enqueue, Dequeue, Peek): O(1)
