@@ -100,7 +100,7 @@
 
   - **Circular Queue**
 
-![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/cirq.jpg)
+    ![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/cirq.jpg)
 
     - Like regular queue, but the last element is connected to the first element, solving the limitation of non-usable empty space.
     - Works in the process of circular increment - modulo division with the queue size
