@@ -125,3 +125,34 @@
     - Flexible, allowing addition and removal from both ends.
     - Space: O(n)
     - Time Complexities (Enqueue, Dequeue, Peek): O(1)
+
+### Linked List
+
+- Linear data structure that includes a series of connected nodes - each node stores the data and the address of the next node.
+
+![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/linked-list.png)
+
+- **HEAD**: Address of the first node
+- Last node identified as the node that points to its next portion as NULL
+- Types of Linked Lists: **Singly**, **Doubly**, **Circular**
+- The power of linked list comes from the ability to break the chain and rejoin it. Doing something similar in an array would have required shifting the positions of all the subsequent elements.
+- Space Complexity: O(n)
+
+![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/linked-list-complexity.png)
+
+- Applications - Dynamic memory allocation, stacks and queues, hash tables
+- Linked List operations:
+
+  - **Traversal**: Access each element of the linked list
+  - **Insertion**: Add a new element to the linked list
+  - **Deletion**: Removes the existing elements from the linked list
+  - **Search**: Find a node in the linked list
+  - **Sort**: Sort the nodes of a linked list
+
+- **Doubly Linked List**: Add a pointer to the previous node, therefore can traverse either direction - forward or backward.
+
+![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/DLL.png)
+
+- **Circular Linked List**: Last element is linked to the first element, forming a loop. This can be both a doubly linked list or a singly linked list.
+
+![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/CLL.png)
