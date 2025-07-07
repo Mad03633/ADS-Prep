@@ -52,3 +52,23 @@
 |      Traversed in a single run      |         Requires multiple runs          |
 |   Inefficient memory utilization    | Relatively efficient memory utilization |
 | Time complexity increases with data |    Time complexity remains the same     |
+
+### [Stacks](/Practice%20Concepts/Data%20Structures/stacks.py)
+
+- Linear Data Structure that follows the principle of **LIFO - Last in First Out - ** last element added to the stack is the first one to be removed.
+
+![](https://github.com/aish21/Algorithms-and-Data-Structures/blob/main/Resources/Animations/PUSH-POP.png)
+
+- **KEY CONCEPTS**:
+    - **PUSH**: Add an element to the top of the stack
+    - **POP**: Remove an element from the top of the stack
+    - **IsEmpty**: Check if the stack is empty
+    -**PEEK**: Check the value of the top element in the stack without removing it
+- Applications: Undo / Redo in text editors, Backtracking problems (mazes), String reversals, compilers, browser (saving previously visited URLs)
+
+- Time Complexity of **Stack**:
+    - Best Case: O(1)
+    - Average Case: O(1)
+    - Worst Case: O(N), where N is the number of items in the stack.
+    - Space Complexity: O(1)
+
