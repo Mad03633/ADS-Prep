@@ -198,3 +198,140 @@
     - ⌊ ⌋ gives the floor value
     - A is any constant. The value of A lies between 0 and 1. But, an optimal choice will be ≈ (√5-1)/2 (Knuth)
   - Universal Hashing: hash function is chosen at random independent of keys
+
+## Trees
+
+<p align="center">
+    <a href="#introduction-to-trees">Introduction to Trees</a> •
+    <a href="#binary-tree">Binary Tree</a> •
+    <a href="#binary-search-tree">Binary Search Tree</a> •
+    <a href="#avl-tree">AVL Tree</a> •
+    <a href="#red-black-tree">Red Black Tree</a>
+    <a href="#binary-heap">Binary Heap</a>
+</p>
+
+### Introduction to Trees
+
+- A **non-linear hierarchical** data structure that consists of nodes connected via edges.
+- For linear data structures, time complexity increases with data size - trees allow quicker and easier access.
+- **Node**: An entity that contains a key or value and pointers to its child nodes. The last nodes of each path are known as leaf/external nodes - no link to child node. Nodes with child nodes - internal nodes.
+- **Edge**: Link between any 2 nodes.
+
+![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/node-edge.png)
+
+- **Root**: topmost node of a tree.
+- **Height (Node)**: Number of edges from the node to the deepest leaf (longest path from the node to the leaf node)
+- **Depth (Node)**: Number of edges from the root to the node.
+- **Height (Tree)**: Height of the root node.
+- **Degree of a Node**: Total number of branches of that node
+- **Forest**: Collection of disjoint trees - by cutting the root of a tree.
+- **Tree traversal**: visiting every node in the tree.
+- Use traversal methods that take into account the hierarchical structure of the tree.
+- Every tree is a combination of a node carrying data and 2 subtrees.
+- Types of Traversal:
+
+  - **Inorder**: Visit all the nodes in the left subtree, root node then all the nodes in the right subtree.
+
+  ![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/in-order-traversal.gif)
+
+  - **Preorder**: Visit root node, visit all the nodes in the left subtree, visit all the nodes in the right subtree.
+
+  ![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/pre-order-traversal.gif)
+
+  - **Postorder**: Visit all the nodes in the left subtree, visit all the nodes in the right subtree, visit the root node.
+
+  ![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/post-order-traversal.gif)
+
+### Binary Tree
+- Tree data structure in which each parent node can have at most 2 children. Each node contains - data item, address of left child, address of right child.
+- **Full Binary Tree**:
+
+  - Every parent/internal node has either 2 or no children nodes.
+
+  ![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/full-binary-tree.png)
+
+  - Also known as a proper binary tree
+  - Let i = number of internal nodes | n = total number of nodes | l = number of leaves | λ = number of levels
+  - Number of leaves = i + 1
+  - n = 2i + 1
+  - l = (n + 1) / 2
+  - i = l – 1
+  - l is at most 2<sup>λ</sup> - 1
+
+- **Perfect Binary Tree**:
+
+  - Every internal node has exactly 2 child nodes and all the leaf nodes are at the same level.
+
+  ![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/perfect-binary-tree.png)
+
+  - All internal nodes have a degree of 2 (2 branches)
+  - If a single node has no children, it is a perfect binary tree of height h = 0
+  - If a node has h > 0, it is a perfect binary tree if both of its subtrees are of height h - 1 and are non-overlapping
+
+- **Complete Binary Tree**:
+
+  - All levels are completely filled except possibly the lowest one, which is filled from the left.
+  - Similar to full binary trees except -
+    1. All the leaf elements must lean towards the left.
+    2. The last leaf element might not have a right sibling i.e. a complete binary tree doesn't have to be a full binary tree.
+
+  ![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/cb1.png)
+
+  ![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/cb2.png)
+
+  ![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/cb3.png)
+
+  ![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/cb4.png)
+
+  ![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/cb5.png)
+
+  - We can use this tree to find the children and parent of any node
+
+- **Degenerate / Pathological Tree** - A tree having a single child either left or right
+
+![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/dgen.png)
+
+- **Skewed Binary Tree** - A pathological/degenerate tree in which the tree is either dominated by the left nodes or the right nodes.
+
+![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/skew.png)
+
+- **Balanced Binary Tree**:
+  - Binary tree in which the height of the left and right subtree of any node differ by not more than 1.
+    - difference between the left and the right subtree for any node is not more than one
+    - the left subtree is balanced
+    - the right subtree is balanced
+
+### Binary Search Tree
+
+- Quickly allows us to maintain a sorted list of numbers
+- It has a maximum of 2 child nodes and can search for a number in O(log(n)) time.
+- How is binary search tree different from a binary tree -
+  1. All nodes on the left subtree are lesser than the root node
+  2. All nodes on the right subtree are greater than the root node
+  3. Both subtrees of each node are also BSTs
+
+![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/bst.png)
+
+- The binary tree on the right isn't a binary search tree because the right subtree of the node "3" contains a value smaller than it.
+- **Operations**:
+  - **SEARCH**: If the value is below the root, we can say for sure that the value is not in the right subtree; we need to only search in the left subtree and if the value is above the root, we can say for sure that the value is not in the left subtree; we need to only search in the right subtree. If the value is found in any of the subtrees, it is propagated up so that in the end it is returned, otherwise null is returned.
+  - **INSERT**: Inserting a value in the correct position is similar to searching. We keep going to either right subtree or left subtree depending on the value and when we reach a point left or right subtree is null, we put the new node there.
+  - **DELETION**:
+    - **CASE 1**: The node to be deleted is the leaf node - simply delete the node from the tree
+    - **CASE 2**: The node to be deleted has a single child node - replace that node with its child node, remove the child node from its original position
+    - **CASE 3**: The node to be deleted has two children - get the inorder successor of that node, replace the node with the inorder successor, remove the inorder successor from its original position
+- **Best Case Time Complexity**: O(log(n))
+- **Worst Case Time Complexity**: O(n)
+- Space Complexity: O(n)
+
+### AVL Tree
+
+- TODO
+
+### Red Black Tree
+
+- TODO
+
+### Binary Heap
+
+- TODO
