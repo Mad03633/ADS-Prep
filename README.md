@@ -356,19 +356,23 @@
 An **AVL tree** may rotate in one of the following four ways to keep itself balanced while making sure that the BST properties are maintained.
 
 1. **Left-Left Rotation**:
-  - Occurs when a node is inserted into the right subtree of the right child, causing the balance factor to become less than -1.
+  - Occurs when a node is inserted into the left subtree of the left child, causing the balance factor to become greater than +1.
+  - Fix: Perform a single right rotation.
   ![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/LLR_AVL.png)
 
 2. **Right-Right Rotation**:
-  - Occurs when a node is inserted into the left subtree of the left child, making the balance factor greater than +1.
+  - Occurs when a node is inserted into the right subtree of the right child, causing the balance factor to become less than -1.
+  - Fix: Perform a single left rotation.
   ![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/RRR_AVL.png)
 
 3. **Left-Right Rotation**:
   - Occurs when a node is inserted into the right subtree of the left child, which disturbs the balance factor of an ancestor node, making it left-heavy.
+  - Fix: Perform a left rotation on the left child, followed by a right rotation on the node.
   ![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/LRR_AVL.png)
 
 4. **Right-Left Rotation**:
   - Occurs when a node is inserted into the left subtree of the right child, which disturbs the balance factor of an ancestor node, making it right-heavy.
+  - Fix: Perform a right rotation on the right child, followed by a left rotation on the node.
   ![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/RLR_AVL.png)
 
 - **Advantages of AVL Tree**:
