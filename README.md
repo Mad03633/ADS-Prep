@@ -304,7 +304,7 @@
 ### Binary Search Tree
 
 - Quickly allows us to maintain a sorted list of numbers
-- It has a maximum of 2 child nodes and can search for a number in O(log(n)) time.
+- It has a maximum of 2 child nodes and can search for a number in **O(log(n))** time.
 - How is binary search tree different from a binary tree -
   1. All nodes on the left subtree are lesser than the root node
   2. All nodes on the right subtree are greater than the root node
@@ -320,13 +320,65 @@
     - **CASE 1**: The node to be deleted is the leaf node - simply delete the node from the tree
     - **CASE 2**: The node to be deleted has a single child node - replace that node with its child node, remove the child node from its original position
     - **CASE 3**: The node to be deleted has two children - get the inorder successor of that node, replace the node with the inorder successor, remove the inorder successor from its original position
-- **Best Case Time Complexity**: O(log(n))
-- **Worst Case Time Complexity**: O(n)
+- **Best Case Time Complexity**: **O(log(n))**
+- **Worst Case Time Complexity**: **O(n)**
 - Space Complexity: O(n)
 
 ### AVL Tree
 
-- TODO
+- An **AVL tree** defined as a self-balancing Binary Search Tree (BST) where the difference between heights of left and right subtrees for any node cannot be more than one.
+- Balance Factor = left subtree height - right subtree height. For a Balanced Tree(for every node): -1 ≤ Balance Factor ≤ 1
+
+- **Example of an AVL Tree**:
+  - The balance factors for different nodes are: 12 : +1, 8 : +1, 18 : +1, 5 : +1, 11 : 0, 17 : 0 and 4 : 0. Since all differences are lies between -1 to +1, so the tree is an **AVL tree**.
+  ![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/AVL-Tree_true.png)
+
+- **Example of a BST which is not an AVL Tree**:
+  - The Below Tree is not an AVL Tree as the balance factor for nodes 8, 4 and 7 is more than 1.
+  ![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/AVL-Tree_false.png.png)
+
+- **Important Points about AVL Tree**:
+  - Rotations: rotations are designed to restore balance in O(1) time while ensuring the overall time complexity remains O(log n). AVL Trees use four types of rotations to rebalance themselves after insertions and deletions:
+    - **Left-Left (LL) Rotation**
+    - **Right-Right (RR) Rotation**
+    - **Left-Right (LR) Rotation**
+    - **Right-Left (RL) Rotation**
+  - **Insertion and Deletion**:
+    While insertion is followed by upward traversals to check balance and apply rotations, deletion can be more complex due to multiple rotations possibly being required. **AVL Trees** may require multiple rebalancing steps during deletion.
+
+- **Operations on an AVL Tree**:
+  - **Searching**: It is same as normal Binary Search Tree (BST) as an **AVL Tree** is always a BST. So we can use the same implementation as BST. The advantage here is time complexity is O(log n)
+  - **Insertion**: It does rotations along with normal BST insertion to make sure that the balance factor of the impacted nodes is less than or equal to 1 after insertion
+  -**Deletion**: It also does rotations along with normal BST deletion to make sure that the balance factor of the impacted nodes is less than or equal to 1 after deletion.
+
+- **Rotating the subtrees** (Used in Insertion and Deletion)
+
+An **AVL tree** may rotate in one of the following four ways to keep itself balanced while making sure that the BST properties are maintained.
+
+1. **Left-Left Rotation**:
+  - Occurs when a node is inserted into the right subtree of the right child, causing the balance factor to become less than -1.
+  ![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/LLR_AVL.png)
+
+2. **Right-Right Rotation**:
+  - Occurs when a node is inserted into the left subtree of the left child, making the balance factor greater than +1.
+  ![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/RRR_AVL.png)
+
+3. **Left-Right Rotation**:
+  - Occurs when a node is inserted into the right subtree of the left child, which disturbs the balance factor of an ancestor node, making it left-heavy.
+  ![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/LRR_AVL.png)
+
+4. **Right-Left Rotation**:
+  - Occurs when a node is inserted into the left subtree of the right child, which disturbs the balance factor of an ancestor node, making it right-heavy.
+  ![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/RLR_AVL.png)
+
+- **Advantages of AVL Tree**:
+  1. **AVL trees** can self-balance themselves and therefore provides time complexity as O(log n) for search, insert and delete.
+  2. As it is a balanced BST, so items can be traversed in sorted order.
+  3. **AVL trees** in general have relatively less height and hence the search is faster.
+
+- **Disadvantages of AVL Tree**:
+  1. It is difficult to implement compared to normal BST.
+  2. **AVL trees** provide complicated insertion and removal operations as more rotations are performed.
 
 ### Red Black Tree
 
