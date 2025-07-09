@@ -386,7 +386,77 @@ An **AVL tree** may rotate in one of the following four ways to keep itself bala
 
 ### Red Black Tree
 
-- TODO
+A **Red-Black Tree** is a self-balancing binary search tree where each node has an additional attribute: a color, which can be either red or black. The primary objective of these trees is to maintain balance during insertions and deletions, ensuring efficient data retrieval and manipulation.
+
+- A **Red-Black Tree** have the following properties:
+  1. **Node Color**: Each node is either red or black.
+  2. **Root Property**: The root of the tree is always black.
+  3. **Red Property**: Red nodes cannot have red children (no two consecutive red nodes on any path).
+  4. **Black Property**: Every path from a node to its descendant null nodes (leaves) has the same number of black nodes.
+  5. **Leaf Property**: All leaves (NIL nodes) are black.
+These properties ensure that the longest path from the root to any leaf is no more than twice as long as the shortest path, maintaining the tree's balance and efficient performance.
+
+**Example of Red-Black Tree:**
+![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/Red_Black_example.png)
+
+- The Correct **Red-Black Tree** in above image ensures that every path from the root to a leaf node has the same number of black nodes. In this case,​ there is one (excluding the root node).
+- The Incorrect **Red Black Tree** does not follow the red-black properties as two red nodes are adjacent to each other. Another problem is that one of the paths to a leaf node has zero black nodes, whereas the other two contain a black node.
+
+**Comparison with AVL Tree**:
+  - The AVL trees are more balanced compared to Red-Black Trees, but they may cause more rotations during insertion and deletion. So if your application involves frequent insertions and deletions, then **Red-Black trees** should be preferred. And if the insertions and deletions are less frequent and search is a more frequent operation, then AVL tree should be preferred over the Red-Black Tree.
+
+- How does a **Red-Black** Tree ensure balance?
+  - A simple example to understand balancing is, that a chain of 3 nodes is not possible in the **Red-Black tree**. We can try any combination of colors and see if all of them violate the Red-Black tree property.
+
+- **Basic Operations on Red-Black Tree**:
+1. **Insertion**. 
+Inserting a new node in a Red-Black Tree involves a two-step process: performing a standard binary search tree (BST) insertion, followed by fixing any violations of **Red-Black** properties.
+  - **BST Insert**: Insert the new node like in a standard BST.
+  - **Fix Violations**:
+      - If the parent of the new node is black, no properties are violated.
+      - If the parent is red, the tree might violate the Red Property, requiring fixes.
+  - **Fixing Violations During Insertion**.
+  After inserting the new node as a red node, we might encounter several cases depending on the colors of the node's parent and uncle (the sibling of the parent):
+    - **Case 1**: **Uncle is Red**: Recolor the parent and uncle to black, and the grandparent to red. Then move up the tree to check for further violations.
+    - **Case 2**: **Uncle is Black**:
+        - **Sub-case 2.1**: **Node is a right child**: Perform a left rotation on the parent.
+        - **Sub-case 2.2**: **Node is a left child**: Perform a right rotation on the grandparent and recolor appropriately.
+
+  2. **Searching**.
+  Searching for a node in a **Red-Black Tree** is similar to searching in a standard Binary Search Tree (BST). The search operation follows a straightforward path from the root to a leaf, comparing the target value with the current node's value and moving left or right accordingly.
+  1. **Start at the Root**: Begin the search at the root node.
+  2. **Traverse the Tree**:
+    - If the target value is equal to the current node's value, the node is found.
+    - If the target value is less than the - current node's value, move to the left child.
+    - If the target value is greater than the current node's value, move to the right child.
+  3. **Repeat**: Continue this process until the target value is found or a NIL node is reached (indicating the value is not present in the tree).
+
+  3. **Deletion**.
+  Deleting a node from a **Red-Black Tree** also involves a two-step process: performing the BST deletion, followed by fixing any violations that arise.
+    1. **BST Deletion**: Remove the node using standard BST rules.
+    2. **Fix Double Black**:
+      - If a black node is deleted, a "double black" condition might arise, which requires specific fixes.
+
+    **Fixing Violations During Deletion**
+    When a black node is deleted, we handle the double black issue based on the sibling's color and the colors of its children:
+      - **Case 1: Sibling is Red**: Rotate the parent and recolor the sibling and parent.
+      - **Case 2: Sibling is Black**:
+        - **Sub-case 2.1: Sibling's children are black**: Recolor the sibling and propagate the double black upwards.
+        - **Sub-case 2.2: At least one of the sibling's children is red**:
+          - If the sibling's far child is red: Perform a rotation on the parent and sibling, and recolor appropriately.
+          - If the sibling's near child is red: Rotate the sibling and its child, then handle as above.
+  4. **Rotation**.
+  **Rotations** are fundamental operations in maintaining the balanced structure of a **Red-Black Tree** (RBT). They help to preserve the properties of the tree, ensuring that the longest path from the root to any leaf is no more than twice the length of the shortest path. Rotations come in two types: left rotations and right rotations.
+  1. **Left Rotation**.
+  2. **Right Rotation**.
+  
+- **Advantages of Red-Black Trees**:
+  1. **Balanced**: **Red-Black Trees** are self-balancing, meaning they automatically maintain a balance between the heights of the left and right subtrees. This ensures that search, insertion, and deletion operations take O(log n) time in the worst case.
+  2. Efficient search, insertion, and deletion: Due to their balanced structure, **Red-Black Trees** offer efficient operations. Search, insertion, and deletion all take O(log n) time in the worst case.
+
+- **Disadvantages of Red-Black Trees**:
+  1. More complex than other balanced trees: Compared to simpler balanced trees like **AVL trees**, **Red-Black Trees** have more complex insertion and deletion rules.
+  2. Constant overhead: Maintaining the **Red-Black Tree** properties adds a small overhead to every insertion and deletion operation.
 
 ### Binary Heap
 
