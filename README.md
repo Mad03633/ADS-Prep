@@ -170,23 +170,23 @@
 
 - **Hash Collision** - When the hash function generates the same index for multiple keys. This can be resolved by -
 
-  - Collision resolution by **chaining**:
+  - Collision resolution by **Separate chaining**:
+  ![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/hash_table_collision_chaining.png)
     - If the hash function produces the same index for multiple elements, these elements are stored in the same index using a doubly linked list.
     - If x is the index for multiple elements, then it contains a pointer pointing to the head of the list. If there are no elements, x contains NIL.
   - **Open Addressing**: **Linear/Quadratic Probing** and **Double Hashing**:
     - **Open addressing** does not store multiple elements into the same slot - each slot is either filled with a single key or left NIL.
     - Technique 1: **Linear Probing**:
       - Collision is resolved by checking the next slot.
-      - h(k, i) = (h′(k) + i) mod m; i is the set of index values and h'(k) is the new hash function.
+      - h<sub>i</sub>(X) = (Hash(X) + i) mod HashTableSize; i is the set of index values and Hash(X) is the new hash function.
       - Value of i is incremented linearly.
       - Problem: Cluster of adjacent slots filled - all must be traversed when inserting a new element.
     - Technique 2: **Quadratic Probing**:
       - Spacing between the slots is increased
-      - h(k, i) = (h′(k) + c1i + c2i<sup>2</sup>) mod m
-      - c1 and c2 are positive auxiliary constants
+      - h<sub>i</sub>(X) = (Hash(X) + i<sup>2</sup>) mod HashTableSize
     - Technique 3: **Double Hashing**:
-      - If a collision occurs after applying a hash function h(k), then another hash function is calculated for finding the next slot
-      - h(k, i) = (h1(k) + ih2(k)) mod m
+      - If a collision occurs after applying a hash function Hash(X), then another hash function is calculated for finding the next slot
+      - h<sub>i</sub>(X) = (Hash(X) + i*Hash<sub>2</sub>(X)) mod HashTableSize
 
 - Good Hash Functions: May not prevent collisions but can reduce the number of collisions.
   - Division Method:
