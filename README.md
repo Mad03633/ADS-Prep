@@ -643,13 +643,14 @@ Basic steps of **Dijkstra's algorithm**:
     - For 0 to 4 minimum distance will be 7. By following path 0 → 1  → 2 → 4
   - **Note**:
     - [2 ➔ 4, weight=1]
-    dist[2] + 1 < dist[4]
-    6 + 1 < ∞ → dist[4] = 7
-    dist = [0, 5, 6, 7, 7]
+    - dist[2] + 1 < dist[4]
+    - 6 + 1 < ∞ → dist[4] = 7
+    - dist = [0, 5, 6, 7, 7]
+    
     - [4 ➔ 3, weight=-1]
-    dist[4] + (-1) < dist[3]
-    7 + (-1) = 6 < 7 → dist[3] = 6
-    dist = [0, 5, 6, 6, 7]
+    - dist[4] + (-1) < dist[3]
+    - 7 + (-1) = 6 < 7 → dist[3] = 6
+    - dist = [0, 5, 6, 6, 7]
 
   - **Input**: V = 4, edges = [[0, 1, 4], [1, 2, -6], [2, 3, 5], [3, 1, -2]], src = 0
 
