@@ -603,8 +603,28 @@ A **Binary Heap** is a complete binary tree that stores data efficiently, allowi
 - Allows us to find the shortest path between any two vertices of a graph
 - Differs from the minimum spanning tree because the shortest distance between two vertices might not include all the vertices of the graph
 - Works on the logic that any subpath of the shortest path between the source and the destination is also the shortest path.
-- Time Complexity: O(ELogV)
+- Time Complexity: O((V+E)LogV) for adjacency list and O(V^2) for adjacency matrix
 - Space Complexity: O(V)
+
+Basic steps of **Dijkstra's algorithm**:
+  1. Initialize distances to all vertices as infinity, and distance to the starting vertex as 0.
+  2. Put all vertices in a priority queue (min-heap), where the key is distance to the vertex.
+  3. While the queue is not empty:
+   - Extract the vertex with the minimum distance.
+   - For each adjacent vertex, update the distance if a shorter path through the extracted vertex is found.
+
+**Example**:
+**Input**: src = 0, V = 5, edges[][] = [[0, 1, 4], [0, 2, 8], [1, 4, 6], [2, 3, 2], [3, 4, 10]]
+
+![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/dijkstra.jpg)
+
+**Output**:  0 4 8 10 10
+**Explanation**:  
+- **Shortest Paths**:  
+  - 0 to 1 = 4. 0 → 1
+  - 0 to 2 = 8. 0 → 2
+  - 0 to 3 = 10. 0 → 2 → 3 
+  - 0 to 4 = 10. 0 → 1 → 4
 
 ### Bellman Ford's Algorithm
 
