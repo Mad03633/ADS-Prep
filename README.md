@@ -459,5 +459,21 @@ Inserting a new node in a Red-Black Tree involves a two-step process: performing
   2. Constant overhead: Maintaining the **Red-Black Tree** properties adds a small overhead to every insertion and deletion operation.
 
 ### Binary Heap
+A **Binary Heap** is a complete binary tree that stores data efficiently, allowing quick access to the maximum or minimum element, depending on the type of heap. It can either be a **Min Heap** or a **Max Heap**. In a **Min Heap**, the key at the root must be the smallest among all the keys in the heap, and this property must hold true recursively for all nodes. Similarly, a **Max Heap** follows the same principle, but with the largest key at the root.
 
-- TODO
+- **Valid and Invalid examples of heaps**:
+![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/Min_heap.png)
+![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/Max_heap.png)
+
+A **Binary Heap** is a **Complete Binary Tree**. A binary heap is typically represented as an array.
+
+ - The root element will be at arr[0].
+ - The below table shows indices of other nodes for the ith node, i.e., arr[i]:
+
+|             arr[(i-1)/2]              |             Returns the parent node              |
+|  arr[(2*i)+1]  |           Returns the left child node            |
+|      arr[(2*i)+2]      |         Returns the right child node          |
+
+**Operations on Heap**:
+  ![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/Operations_Heap_1.png)
+  ![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/Operations_Heap_2.png)
