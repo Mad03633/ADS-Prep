@@ -541,3 +541,102 @@ A **Binary Heap** is a complete binary tree that stores data efficiently, allowi
   1. Finding the adjacent list is not quicker than the adjacency matrix because all the connected nodes must be first explored to find them.
 
 ![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/time_matrix_list.jpg)
+
+### DFS Algorithm
+
+- Recursive algorithm for searching all the vertices of a graph or tree.
+- Vertex categorized as visited or not visited
+- The purpose of the algorithm is to mark each vertex as visited while avoiding cycles.
+- Working of DFS -
+  1. Place any vertex on top of a stack
+  2. Take top item of the stack and add it to the visited list
+  3. Create a list of that vertex's adjacent nodes - Add the ones which aren't in the visited list to the top of the stack.
+  4. Keep repeating 2 and 3 until stack is empty
+- Time complexity - O(V + E), where V is the number of nodes and E is the number of edges.
+- Space complexity - O(V).
+
+**Example**:
+**Input**: [[2,3,1], [0], [0,4], [0], [2]]
+
+![]()
+
+**Output**: [0 2 4 3 1]
+**Explanation**: 
+  - DFS Steps:
+    - Start at 0: Mark as visited. Output: 0
+    - Move to 2: Mark as visited. Output: 2
+    - Move to 4: Mark as visited. Output: 4 (backtrack to 2, then backtrack to 0)
+    - Move to 3: Mark as visited. Output: 3 (backtrack to 0)
+    - Move to 1: Mark as visited. Output: 1 (backtrack to 0)
+
+### Breadth First Search
+
+- Recursive algorithm for searching all the vertices of a graph or tree data structure.
+- The algorithm works as follows:
+
+  1. Start by putting any one of the graph's vertices at the back of a queue.
+  2. Take the front item of the queue and add it to the visited list
+  3. Create a list of that vertex's adjacent nodes - add the ones which aren't in the visited list to the back of the queue.
+  4. Keep repeating steps 2 and 3 until the queue is empty.
+
+- The graph might have two different disconnected parts
+- Time complexity - O(V + E), where V is the number of nodes and E is the number of edges.
+- Space complexity - O(V).
+
+**Example**:
+**Input**: [[2,3,1], [0], [0,4], [0], [2]]
+
+![]()
+
+**Output**: [0 2 3 1 4]
+**Explanation**: 
+  - DFS Steps:
+    - Start at 0: Mark as visited. Output: 0
+    - Move to 2: Mark as visited. Output: 2
+    (backtrack to 0)
+    - Move to 3: Mark as visited. Output: 3 (backtrack to 0)
+    - Move to 1: Mark as visited. Output: 1 (backtrack to 0)
+    - Move to 4: Mark as visited. Output: 1 (backtrack to 2, then backtrack to 0)
+
+### Bellman Ford's Algorithm
+
+### Dijkstra's Algorithm
+
+- Allows us to find the shortest path between any two vertices of a graph
+- Differs from the minimum spanning tree because the shortest distance between two vertices might not include all the vertices of the graph
+- Works on the logic that any subpath of the shortest path between the source and the destination is also the shortest path.
+- Time Complexity: O(ELogV)
+- Space Complexity: O(V)
+
+### Floyd Warshall's Algorithm
+
+- An algorithm for finding the shortest path between all the pairs of vertices in a weighted graph.
+- Works for both the directed and undirected weighted graphs - does not work for the graphs with negative cycles
+- Implementation:
+  - Create a matrix A0 of dimension n\*n where n is the number of vertices.
+  - Each cell A[i][j] is filled with the distance from the ith vertex to the jth vertex. If there is no path from ith vertex to jth vertex, the cell is left as infinity
+  - Create a matrix A1 using matrix A0. The elements in the first column and the first row are left as they are.
+  - Let k be the intermediate vertex in the shortest path from source to destination. In this step, k is the first vertex. A[i][j] is filled with (A[i][k] + A[k][j]) if (A[i][j] > A[i][k] + A[k][j])
+  - Similarly, A2 is created using A1. The elements in the second column and the second row are left as they are.
+- Time Complexity - O(n<sup>3</sup>)
+- Space Complexity - O(n<sup>2</sup>)
+
+### Prim's Algorithm
+
+- A minimum spanning tree algorithm that takes a graph as input and finds the subset of the edges of that graph which form a tree that includes every vertex and has the minimum sum of weights among all the trees that can be formed from the graph
+- Implementation:
+  - Initialize the minimum spanning tree with a vertex chosen at random
+  - Find all the edges that connect the tree to new vertices, find the minimum and add it to the tree
+  - Keep repeating step 2 until we get a minimum spanning tree
+- Time Complexity: O(E log V)
+
+### Kruskal's Algorithm
+
+- A minimum spanning tree algorithm that takes a graph as input and finds the subset of the edges of that graph which form a tree that includes every vertex and has the minimum sum of weights among all the trees that can be formed from the graph
+- Start from the edges with the lowest weight and keep adding edges until we reach the goal.
+- Implementation:
+  - Sort all the edges from low weight to high
+  - Take the edge with the lowest weight and add it to the spanning tree. If adding the edge created a cycle, then reject this edge.
+  - Keep adding edges until we reach all vertices
+- Time Complexity: O(E log E)
+
