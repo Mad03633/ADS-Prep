@@ -465,15 +465,67 @@ A **Binary Heap** is a complete binary tree that stores data efficiently, allowi
 ![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/Min_heap.png)
 ![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/Max_heap.png)
 
-A **Binary Heap** is a **Complete Binary Tree**. A binary heap is typically represented as an array.
-
- - The root element will be at arr[0].
- - The below table shows indices of other nodes for the ith node, i.e., arr[i]:
-
-|             arr[(i-1)/2]              |             Returns the parent node              |
-|  arr[(2*i)+1]  |           Returns the left child node            |
-|      arr[(2*i)+2]      |         Returns the right child node          |
-
 **Operations on Heap**:
   ![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/Operations_Heap_1.png)
   ![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/Operations_Heap_2.png)
+
+## Graphs
+
+<p align="center">
+    <a href="#graph-basics">Graph Basics</a> •
+    <a href="#spanning-tree">Spanning Tree</a> •
+    <a href="#strongly-connected-components">Strongly Connected Components</a> •
+    <a href="#adjacency-matrix">Adjacency Matrix</a> •
+    <a href="#adjacency-list">Adjacency List</a> •
+    <a href="#dfs-algorithm">DFS Algorithm</a> •
+    <a href="#breadth-first-search">Breadth First Search</a> •
+    <a href="#bellman-fords-algorithm">Bellman Ford's Algorithm</a> •
+    <a href="#dijkstras-algorithm">Dijkstra's Algorithm</a> •
+    <a href="#floyd-warshalls-algorithm">Floyd-Warshall's Algorithm</a> •
+    <a href="#prims-algorithm">Prim's Algorithm</a> •
+    <a href="#kruskal-algorithm">Kruskal's Algorithm</a>
+</p>
+
+### Graph Basics
+
+- A collection of nodes that have data and are connected to other nodes.
+- A **graph** is a data structure (V, E) - collection of **vertices V**, a collection of **edges E** [represented as ordered pairs of vertices (u,v)]
+
+![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/graph.png)
+
+- V = {0, 1, 2, 3} | E = {(0,1), (0,2), (0,3), (1,2)} | G = {V, E}
+- **Adjacency**: A vertex is said to be adjacent to another vertex if there is an edge connecting them. Vertices 2 and 3 are not adjacent because there is no edge between them.
+- **Path**: A sequence of edges that allows you to go from vertex A to vertex B. 0-1, 1-2 and 0-2 are paths from vertex 0 to vertex 2.
+- **Directed Graph**: A **graph** in which an edge (u,v) doesn't necessarily mean that there is an edge (v, u) as well. The edges in such a graph are represented by arrows to show the direction of the edge.
+- **Graph Representations**: **Adjacency Matrix** and **Adjacency List**
+
+### Spanning Tree
+
+- **Undirected Graph**: Graph in which the edges do not point in any direction - bidirectional
+- **Connected Graph**: Graph in which there is always a path from a vertex to any other vertex
+- **Spanning Tree**: Sub-graph of an undirected connected graph, which includes all the vertices of the graph with a minimum possible number of edges. If a vertex is missed, then it is not a spanning tree.
+- The total number of spanning trees with n vertices that can be created from a complete graph is equal to n<sup>(n-2)</sup>
+- A minimum spanning tree is a spanning tree in which the sum of the weight of the edges is as minimum as possible.
+
+### Adjacency Matrix
+
+- Representing graphs as a matrix of 0s and 1s - boolean value of the matrix indicates if there is a direct path between two vertices.
+- Each cell in the matrix is represented as A(i,j) where i and j are vertices.
+- The value of A(i,j) is either 1 or 0 depending on whether there is an edge from vertex i to vertex j.
+- In case of undirected graphs, the matrix is symmetric about the diagonal because of every edge (i,j), there is also an edge (j,i).
+- **Advantages** -
+  1. Basic operations are time efficient - constant time operations
+  2. Even if the graph and the adjacency matrix is sparse, we can represent it using data structures for sparse matrices.
+  3. By performing operations on the adjacent matrix, we can get important insights into the nature of the graph and the relationship between its vertices.
+- **Disadvantages** -
+  1. The VxV space requirement of the adjacency matrix makes it a memory hog.
+  2. Operations like inEdges and outEdges are expensive when using the adjacency matrix representation.
+
+### Adjacency List
+
+- Represents a graph as an array of linked lists. The index of the array represents a vertex and each element in its linked list represents the other vertices that form an edge with the vertex.
+- **Advantages** -
+  1. Efficient in terms of storage because we only need to store the values for the edges.
+  2. It also helps to find all the vertices adjacent to a vertex easily.
+- **Disadvantages** -
+  1. Finding the adjacent list is not quicker than the adjacency matrix because all the connected nodes must be first explored to find them.
