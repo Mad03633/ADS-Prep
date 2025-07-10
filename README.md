@@ -558,7 +558,7 @@ A **Binary Heap** is a complete binary tree that stores data efficiently, allowi
 **Example**:
 **Input**: [[2,3,1], [0], [0,4], [0], [2]]
 
-![]()
+![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/example_dfs_bfs.jpg)
 
 **Output**: [0 2 4 3 1]
 **Explanation**: 
@@ -586,7 +586,7 @@ A **Binary Heap** is a complete binary tree that stores data efficiently, allowi
 **Example**:
 **Input**: [[2,3,1], [0], [0,4], [0], [2]]
 
-![]()
+![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/example_dfs_bfs.jpg)
 
 **Output**: [0 2 3 1 4]
 **Explanation**: 
