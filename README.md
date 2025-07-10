@@ -497,15 +497,19 @@ A **Binary Heap** is a complete binary tree that stores data efficiently, allowi
 - **Adjacency**: A vertex is said to be adjacent to another vertex if there is an edge connecting them. Vertices 2 and 3 are not adjacent because there is no edge between them.
 - **Path**: A sequence of edges that allows you to go from vertex A to vertex B. 0-1, 1-2 and 0-2 are paths from vertex 0 to vertex 2.
 - **Directed Graph**: A **graph** in which an edge (u,v) doesn't necessarily mean that there is an edge (v, u) as well. The edges in such a graph are represented by arrows to show the direction of the edge.
+![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/directed_graph.jpg)
+
 - **Graph Representations**: **Adjacency Matrix** and **Adjacency List**
 
 ### Spanning Tree
 
 - **Undirected Graph**: Graph in which the edges do not point in any direction - bidirectional
+![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/undirected_graph.jpg)
 - **Connected Graph**: Graph in which there is always a path from a vertex to any other vertex
+![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/connected_graph.jpg)
 - **Spanning Tree**: Sub-graph of an undirected connected graph, which includes all the vertices of the graph with a minimum possible number of edges. If a vertex is missed, then it is not a spanning tree.
 - The total number of spanning trees with n vertices that can be created from a complete graph is equal to n<sup>(n-2)</sup>
-- A minimum spanning tree is a spanning tree in which the sum of the weight of the edges is as minimum as possible.
+- A **minimum spanning tree** is a spanning tree in which the sum of the weight of the edges is as minimum as possible.
 
 ### Adjacency Matrix
 
@@ -513,6 +517,9 @@ A **Binary Heap** is a complete binary tree that stores data efficiently, allowi
 - Each cell in the matrix is represented as A(i,j) where i and j are vertices.
 - The value of A(i,j) is either 1 or 0 depending on whether there is an edge from vertex i to vertex j.
 - In case of undirected graphs, the matrix is symmetric about the diagonal because of every edge (i,j), there is also an edge (j,i).
+
+![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/adjacency_matrix.jpg)
+
 - **Advantages** -
   1. Basic operations are time efficient - constant time operations
   2. Even if the graph and the adjacency matrix is sparse, we can represent it using data structures for sparse matrices.
@@ -524,8 +531,13 @@ A **Binary Heap** is a complete binary tree that stores data efficiently, allowi
 ### Adjacency List
 
 - Represents a graph as an array of linked lists. The index of the array represents a vertex and each element in its linked list represents the other vertices that form an edge with the vertex.
+
+![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/adjacency_list.jpg)
+
 - **Advantages** -
   1. Efficient in terms of storage because we only need to store the values for the edges.
   2. It also helps to find all the vertices adjacent to a vertex easily.
 - **Disadvantages** -
   1. Finding the adjacent list is not quicker than the adjacency matrix because all the connected nodes must be first explored to find them.
+
+![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/time_matrix_list.jpg)
