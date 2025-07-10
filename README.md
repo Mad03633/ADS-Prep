@@ -628,7 +628,44 @@ Basic steps of **Dijkstra's algorithm**:
 
 ### Bellman Ford's Algorithm
 
+**Bellman-Ford** is a single source shortest path algorithm. It effectively works in the cases of **negative edges** and is able to detect **negative cycles** as well. It works on the principle of **relaxation** of the edges. In the presence of a **negative weight cycle**, **return -1** to signify that shortest path calculations are not feasible.
 
+**Example**:
+  - **Input**: V = 5, edges = [[0, 1, 5], [1, 2, 1], [1, 3, 2], [2, 4, 1], [4, 3, -1]], src = 0
+
+  ![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/bellman-ford.jpg)
+
+  - **Output**: [0, 5, 6, 6, 7]
+  - **Explanation**:  Shortest Paths:  
+    - For 0 to 1 minimum distance will be 5. By following path 0 → 1
+    - For 0 to 2 minimum distance will be 6. By following path 0 → 1  → 2
+    - For 0 to 3 minimum distance will be 6. By following path 0 → 1  → 2 → 4 → 3 
+    - For 0 to 4 minimum distance will be 7. By following path 0 → 1  → 2 → 4
+  - **Note**:
+    - [2 ➔ 4, weight=1]
+    dist[2] + 1 < dist[4]
+    6 + 1 < ∞ → dist[4] = 7
+    dist = [0, 5, 6, 7, 7]
+    - [4 ➔ 3, weight=-1]
+    dist[4] + (-1) < dist[3]
+    7 + (-1) = 6 < 7 → dist[3] = 6
+    dist = [0, 5, 6, 6, 7]
+
+  - **Input**: V = 4, edges = [[0, 1, 4], [1, 2, -6], [2, 3, 5], [3, 1, -2]], src = 0
+
+  ![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/bellman-ford-neg-cycle.jpg)
+
+  - **Output**: [-1]
+    - **Explanation**: The graph contains a negative weight cycle formed by the path 1 → 2 → 3 → 1, where the total weight of the cycle is negative.
+
+**Basic steps of the Bellman-Ford algorithm**:
+  1. Initialize the distance to the starting vertex as 0, and the distances to all other vertices as infinity.
+  2. Repeat **Ѵ-1** times (where V is the number of vertices in the graph):
+    - For each edge (u, v) with weight w:
+      - If the distance to the vertex plus the edge weight is less than the distance to the vertex ѵ, update the distance to the vertex ѵ.
+  3. Check for **negative cycles**:
+    - For each edge (u, v) with weight w:
+    - If the distance to the vertex plus the edge weight is less than the distance to the vertex ѵ, there is a **negative cycle**.
 
 ### Floyd Warshall's Algorithm
 
