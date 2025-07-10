@@ -479,8 +479,8 @@ A **Binary Heap** is a complete binary tree that stores data efficiently, allowi
     <a href="#adjacency-list">Adjacency List</a> •
     <a href="#dfs-algorithm">DFS Algorithm</a> •
     <a href="#breadth-first-search">Breadth First Search</a> •
-    <a href="#bellman-fords-algorithm">Bellman Ford's Algorithm</a> •
     <a href="#dijkstras-algorithm">Dijkstra's Algorithm</a> •
+    <a href="#bellman-fords-algorithm">Bellman Ford's Algorithm</a> •
     <a href="#floyd-warshalls-algorithm">Floyd-Warshall's Algorithm</a> •
     <a href="#prims-algorithm">Prim's Algorithm</a> •
     <a href="#kruskal-algorithm">Kruskal's Algorithm</a>
@@ -598,8 +598,6 @@ A **Binary Heap** is a complete binary tree that stores data efficiently, allowi
     - Move to 1: Mark as visited. Output: 1 (backtrack to 0)
     - Move to 4: Mark as visited. Output: 1 (backtrack to 2, then backtrack to 0)
 
-### Bellman Ford's Algorithm
-
 ### Dijkstra's Algorithm
 
 - Allows us to find the shortest path between any two vertices of a graph
@@ -607,6 +605,10 @@ A **Binary Heap** is a complete binary tree that stores data efficiently, allowi
 - Works on the logic that any subpath of the shortest path between the source and the destination is also the shortest path.
 - Time Complexity: O(ELogV)
 - Space Complexity: O(V)
+
+### Bellman Ford's Algorithm
+
+
 
 ### Floyd Warshall's Algorithm
 
