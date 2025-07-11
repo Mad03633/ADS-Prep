@@ -708,12 +708,26 @@ Basic steps of **Dijkstra's algorithm**:
 
 ### Prim's Algorithm
 
+**Prim's algorithm** is a greedy algorithm for finding a minimum spanning tree (MST) in an **undirected weighted graph**. A minimum spanning tree is a subset of the edges of the graph that connects all vertices *without forming cycles* and has the minimum possible sum of edge weights.
+
 - A minimum spanning tree algorithm that takes a graph as input and finds the subset of the edges of that graph which form a tree that includes every vertex and has the minimum sum of weights among all the trees that can be formed from the graph
 - Implementation:
   - Initialize the minimum spanning tree with a vertex chosen at random
   - Find all the edges that connect the tree to new vertices, find the minimum and add it to the tree
   - Keep repeating step 2 until we get a minimum spanning tree
-- Time Complexity: O(E log V)
+- **Time Complexity**: O(E log V)
+
+- **Example**:
+
+![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/Prim's_algo.png)
+
+- **Main steps of Prim's algorithm**:
+  - Step 1: Determine an arbitrary vertex as the starting vertex of the MST. We pick 0 in the **above** diagram.
+  - Step 2: Follow steps 3 to 5 till there are vertices that are not included in the MST (known as fringe vertex).
+  - Step 3: Find edges connecting any tree vertex with the fringe vertices.
+  - Step 4: Find the minimum among these edges.
+  - Step 5: Add the chosen edge to the MST. Since we consider only the edges that connect fringe vertices with the rest, we never get a cycle.
+  - Step 6: Return the MST and exit
 
 ### Kruskal's Algorithm
 
