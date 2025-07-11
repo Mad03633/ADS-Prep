@@ -715,7 +715,7 @@ Basic steps of **Dijkstra's algorithm**:
   - Initialize the minimum spanning tree with a vertex chosen at random
   - Find all the edges that connect the tree to new vertices, find the minimum and add it to the tree
   - Keep repeating step 2 until we get a minimum spanning tree
-- **Time Complexity**: O(E log V)
+- **Time Complexity**: O(V^2) for adjacency matrix, O((E + V) log V) with a priority queue
 
 - **Example**:
 
@@ -731,11 +731,22 @@ Basic steps of **Dijkstra's algorithm**:
 
 ### Kruskal's Algorithm
 
+**Kruskal's algorithm** is a greedy algorithm for finding a minimum spanning tree (MST) in an undirected weighted graph. Unlike **Prim's algorithm**, which grows around a chosen starting vertex, Kruskal's algorithm works on **sets and adds edges** as needed until all vertices are connected.
+
 - A minimum spanning tree algorithm that takes a graph as input and finds the subset of the edges of that graph which form a tree that includes every vertex and has the minimum sum of weights among all the trees that can be formed from the graph
-- Start from the edges with the lowest weight and keep adding edges until we reach the goal.
+- **Start from the edges with the lowest weight** and keep adding edges until we reach the goal.
 - Implementation:
   - Sort all the edges from low weight to high
   - Take the edge with the lowest weight and add it to the spanning tree. If adding the edge created a cycle, then reject this edge.
   - Keep adding edges until we reach all vertices
-- Time Complexity: O(E log E)
+- Time Complexity: O(E log E) or O(E log V)
 
+- **Example**:
+
+![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/Kruskal's_algo.png)
+
+**Main steps of Kruskal's algorithm**:
+  1. Sort all edges in the graph in ascending order of their weights. 
+  2. Initialize an empty set to hold the MST.
+  3. Iteratively check each edge in the sorted list: 
+    - If adding an edge does not form a cycle, add it to the MST. Repeat until the MST contains **V-1** edges (where V is the number of vertices in the graph).
