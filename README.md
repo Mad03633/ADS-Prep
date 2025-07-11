@@ -670,16 +670,41 @@ Basic steps of **Dijkstra's algorithm**:
 
 ### Floyd Warshall's Algorithm
 
-- An algorithm for finding the shortest path between all the pairs of vertices in a weighted graph.
-- Works for both the directed and undirected weighted graphs - does not work for the graphs with negative cycles
+- An algorithm for finding the shortest path between **ALL THE PAIRS** of vertices in a weighted graph.
+- Works for both the **directed** and **undirected** weighted graphs - does not work for the graphs with **negative cycles**
 - Implementation:
   - Create a matrix A0 of dimension n\*n where n is the number of vertices.
-  - Each cell A[i][j] is filled with the distance from the ith vertex to the jth vertex. If there is no path from ith vertex to jth vertex, the cell is left as infinity
+  - Each cell A[i][j] is filled with the distance from the ith vertex to the jth vertex. If there is no path from ith vertex to jth vertex, the cell is left as **infinity**
   - Create a matrix A1 using matrix A0. The elements in the first column and the first row are left as they are.
   - Let k be the intermediate vertex in the shortest path from source to destination. In this step, k is the first vertex. A[i][j] is filled with (A[i][k] + A[k][j]) if (A[i][j] > A[i][k] + A[k][j])
   - Similarly, A2 is created using A1. The elements in the second column and the second row are left as they are.
-- Time Complexity - O(n<sup>3</sup>)
+- **Time Complexity** - **O(n<sup>3</sup>)**
 - Space Complexity - O(n<sup>2</sup>)
+
+- **Example**:
+  - **Input**: 
+  dist[][] = [[0, 4, 10⁸, 5, 10⁸],
+              [10⁸, 0, 1,  10⁸, 6],
+              [2, 10⁸, 0, 3, 10⁸],
+              [10⁸, 10⁸, 1, 0, 2],
+              [1, 10⁸, 10⁸, 4, 0]]
+  ![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/floyd-warshall-input.jpg)
+  - **Output**:[[0, 4, 5, 5, 7], 
+               [3, 0, 1, 4, 6], 
+               [2, 6, 0, 3, 5],
+               [3, 7, 1, 0, 2], 
+               [1, 5, 5, 4, 0]]
+
+  - **Explanation**:
+  ![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/floyd-warshall-output.jpg)
+
+  *Each cell dist[i][j] in the output shows the shortest distance from node i to node j, computed by considering all possible intermediate nodes using the Floyd-Warshall algorithm.*
+
+- **Basic steps of the Floyd–Warshall algorithm**:
+  1. Create a distance matrix, where dist[i][j] is the minimum distance from vertex i to vertex j. 
+  2. Initialize the distance matrix by setting dist[i][j] to the weight of the edge between vertices i and j if such an edge exists, and to infinity (INF) if no edge exists. For all vertices j, set dist[i][i] to 0.
+  3. Iteratively use each vertex as an intermediate vertex and update distances: 
+   - For each pair of vertices (i, j), update dist[i][j] if a shorter path can be obtained through intermediate vertex j.
 
 ### Prim's Algorithm
 
