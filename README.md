@@ -750,3 +750,5 @@ Basic steps of **Dijkstra's algorithm**:
   2. Initialize an empty set to hold the MST.
   3. Iteratively check each edge in the sorted list: 
     - If adding an edge does not form a cycle, add it to the MST. Repeat until the MST contains **V-1** edges (where V is the number of vertices in the graph).
+
+![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/diff_prim_kruskal.jpg)
