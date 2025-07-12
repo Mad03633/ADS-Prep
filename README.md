@@ -798,3 +798,267 @@ Basic steps of **Dijkstra's algorithm**:
 - **Big Omega** and **Theta** -
   - **Omega** - For a function f(n) is equal to Ω(g(n)) if there exist a constant C and n0 such that f(n) is always greater than C(g(n)). i.e. f(n) > C(g(n)) or C(g(n)) < f(n) (Best Case)
   - **Theta** - For a function f(n) is equal to Ø(n) if a function f(n) is greater than C1 g(n) and is less than C2g(n) for all n>= 0. It means that the function f(n) will always be in-between C1*g(n) and C2*g(n). It can be shown in formula as : C1*g(n) <= f(n) <= C2*g(n) (Average Case)
+
+## Sorting Algorithms
+
+<p align="center">
+    <a href="#bubble-sort">Bubble Sort</a> •
+    <a href="#insertion-sort">Insertion Sort</a> •
+    <a href="#selection-sort">Selection Sort</a> •
+    <a href="#quick-sort">Quick Sort</a> •
+    <a href="#merge-sort">Merge Sort</a> •
+    <a href="#heap-sort">Heap Sort</a> •
+    <a href="#counting-sort">Counting Sort</a> •
+    <a href="#radix-sort">Radix Sort</a> •
+    <a href="#shell-sort">Shell Sort</a> •
+    <a href="#smooth-sort">Smooth Sort</a> •
+    <a href="#tree-sort">Tree Sort</a> •
+    <a href="#cube-sort">Cube Sort</a> •
+</p>
+
+![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/sorts.jpg)
+
+### Bubble Sort
+
+- **Bubble Sort** will sort by checking if the next element is greater than the present element - if greater then it will swap the elements.
+- Use of **2 loops** - **outer** and **inner**
+- Each element is compared to its adjacent element - if current is greater, then we swap them
+- At the end of the first iteration, the largest element will be at the end, the second largest will be at the n - 1 position
+- **Outer loop** is to loop n times and **inner loop** is for swapping
+- In place sorting
+- **Worst Case**: **O(n<sup>2</sup>)**
+- Best Case: O(1) - because an extra variable is used for swapping.
+
+![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/Bubble-sort.gif)
+
+```
+void bubbleSort(vector<int>& arr) {
+    int n = arr.size();
+    bool swapped;
+  
+    for (int i = 0; i < n - 1; i++) {
+        swapped = false;
+        for (int j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                swap(arr[j], arr[j + 1]);
+                swapped = true;
+            }
+        }
+      
+        // If no two elements were swapped, then break
+        if (!swapped)
+            break;
+    }
+}
+
+```
+
+### Insertion Sort
+
+- **Insertion Sort** is an efficient algorithm for sorting a small number of elements.
+- In-place sorting - rearranges the elements in place.
+- Keys: Numbers that we wish to sort
+- Divide array into **sorted** and **unsorted** elements, select first **unsorted element** (key), swap the **sorted elements** to the right to create the correct position and shift the unsorted element (key), advance marker to right (next key)
+- Best Case: O(n)
+- **Worst Case**: **O(n<sup>2</sup>)**
+- Space Complexity: O(1)
+
+![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/Insertion-Sort.gif)
+
+```
+void insertionSort(int arr[], int n)
+{
+    for (int i = 1; i < n; ++i) {
+        int key = arr[i];
+        int j = i - 1;
+
+        /* Move elements of arr[0..i-1], that are
+           greater than key, to one position ahead
+           of their current position */
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j = j - 1;
+        }
+        arr[j + 1] = key;
+    }
+}
+```
+
+### Selection Sort
+
+- **Selection Sort** is a sorting technique where the **smallest element** is taken from the array and placed at the **first index** - this is repeated for the remaining elements.
+- Get the **smallest element** from the array, exchange it with the **first index element**
+- Second smallest element swap with second index position, and so forth
+- Need of 2 loops - outer loop iterate all the array elements one by one, inner loop - here the element from the outer loop is checked against all the elements from inner loop. If a smaller element is found, then that element will be replaced with the index of outer loop
+- **Best, Worst Case**: **O(n<sup>2</sup>)**
+- Space Complexity: O(1)
+
+![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/Selection-Sort.gif)
+
+```
+void selectionSort(vector<int> &arr) {
+    int n = arr.size();
+
+    for (int i = 0; i < n - 1; ++i) {
+
+        // Assume the current position holds
+        // the minimum element
+        int min_idx = i;
+
+        // Iterate through the unsorted portion
+        // to find the actual minimum
+        for (int j = i + 1; j < n; ++j) {
+            if (arr[j] < arr[min_idx]) {
+
+                // Update min_idx if a smaller
+                // element is found
+                min_idx = j; 
+            }
+        }
+
+        // Move minimum element to its
+        // correct position
+        swap(arr[i], arr[min_idx]);
+    }
+}
+```
+
+### Quick Sort
+
+- Based on the **Divide and Conquer** strategy
+- **Method**:
+  1. Select the **pivot element**: Different variations have different methods of picking the pivot elements. The most basic one picks the **right-most element** as the **pivot element**.
+  2. **Rearrange the array**: Arranged in the manner so that the elements smaller than the pivot are to the left whereas the elements larger than the pivot are stored on the right.
+     - Pointer fixed at the pivot element. This is compared with the element starting from the first index
+     - Second pointer set for the element if it is larger than the pivot
+     - Pivot is compared with other elements - If an element smaller than the pivot element is reached, the smaller element is swapped with the greater element found earlier.
+     - Process is repeated to set the next greater element as the second pointer. And, swap it with another smaller element.
+     - The process goes on until the second last element is reached
+     - Pivot swapped with the new second pointer.
+  3. Divide the subarrays - Pivot elements are again chosen for the left and the right sub-parts separately. And, step 2 is repeated. The subarrays are divided until each subarray is formed of a single element.
+- Time complexity:
+  - **Best, Average**: **O(nlog(n))**
+  - **Worst**: **O(n<sup>2</sup>)**
+- Space Complexity: O(log(n))
+
+![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/quicksort.gif)
+
+```
+int partition(vector<int>& arr, int low, int high) {
+  
+    // Choose the pivot
+    int pivot = arr[high];
+  
+    // Index of smaller element and indicates 
+    // the right position of pivot found so far
+    int i = low - 1;
+
+    // Traverse arr[low..high] and move all smaller
+    // elements on left side. Elements from low to 
+    // i are smaller after every iteration
+    for (int j = low; j <= high - 1; j++) {
+        if (arr[j] < pivot) {
+            i++;
+            swap(arr[i], arr[j]);
+        }
+    }
+    
+    // Move pivot after smaller elements and
+    // return its position
+    swap(arr[i + 1], arr[high]);  
+    return i + 1;
+}
+
+// The QuickSort function implementation
+void quickSort(vector<int>& arr, int low, int high) {
+  
+    if (low < high) {
+      
+        // pi is the partition return index of pivot
+        int pi = partition(arr, low, high);
+
+        // Recursion calls for smaller elements
+        // and greater or equals elements
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
+    }
+}
+```
+
+### Merge Sort
+
+- Based on the **divide and conquer** strategy
+- Divide: Divide the array into **half**, and continue to do so with the resultant arrays until only single elements are left
+- **Conquer**: Sort the **left part** and **right part** of the array recursively
+- **Combine**: Combine the left and right arrays to form one complete, sorted array
+- External Sorting, Stable
+- Best Case, Worst Case and Average Case: **O(nlogn)**
+
+![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/Merge-Sort.gif)
+
+```
+// Merges two subarrays of arr[].
+// First subarray is arr[left..mid]
+// Second subarray is arr[mid+1..right]
+void merge(vector<int>& arr, int left, 
+                     int mid, int right){
+                         
+    int n1 = mid - left + 1;
+    int n2 = right - mid;
+
+    // Create temp vectors
+    vector<int> L(n1), R(n2);
+
+    // Copy data to temp vectors L[] and R[]
+    for (int i = 0; i < n1; i++)
+        L[i] = arr[left + i];
+    for (int j = 0; j < n2; j++)
+        R[j] = arr[mid + 1 + j];
+
+    int i = 0, j = 0;
+    int k = left;
+
+    // Merge the temp vectors back 
+    // into arr[left..right]
+    while (i < n1 && j < n2) {
+        if (L[i] <= R[j]) {
+            arr[k] = L[i];
+            i++;
+        }
+        else {
+            arr[k] = R[j];
+            j++;
+        }
+        k++;
+    }
+
+    // Copy the remaining elements of L[], 
+    // if there are any
+    while (i < n1) {
+        arr[k] = L[i];
+        i++;
+        k++;
+    }
+
+    // Copy the remaining elements of R[], 
+    // if there are any
+    while (j < n2) {
+        arr[k] = R[j];
+        j++;
+        k++;
+    }
+}
+
+// begin is for left index and end is right index
+// of the sub-array of arr to be sorted
+void mergeSort(vector<int>& arr, int left, int right){
+    
+    if (left >= right)
+        return;
+
+    int mid = left + (right - left) / 2;
+    mergeSort(arr, left, mid);
+    mergeSort(arr, mid + 1, right);
+    merge(arr, left, mid, right);
+}
+```
