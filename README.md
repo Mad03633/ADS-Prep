@@ -1062,3 +1062,75 @@ void mergeSort(vector<int>& arr, int left, int right){
     merge(arr, left, mid, right);
 }
 ```
+
+### Heap Sort
+
+- **Heap sort** works by visualizing the elements of the array as a special kind of **complete binary tree** called a heap.
+- If the index of any element in the array is i, the element in the index 2i+1 will become the left child and element in 2i+2 index will become the right child. Also, the parent of any element at index i is given by the lower bound of (i-1)/2
+- A binary tree is said to follow a heap data structure if - it is a **complete binary tree** and all nodes in the tree follow the property that they are greater than their children - the largest element is at the root and both its children and smaller than the root and so on. Such a heap is called a max-heap. If instead, all nodes are smaller than their children, it is called a min-heap
+
+![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/min-max-heap.png)
+
+- Starting from a **complete binary tree**, we can modify it to become a **Max-Heap** by running a function called **heapify** on all the non-leaf elements of the heap.
+- To maintain the **max-heap** property in a tree where both sub-trees are max-heaps, we need to run **heapify** on the root element repeatedly until it is larger than its children or it becomes a leaf node.
+- **Heap Sort Method**:
+  - Since the tree satisfies **Max-Heap** property, then the largest item is stored at the root node.
+  - **Swap**: Remove the **root element** and put at **the end** of the array (nth position) Put the last item of the tree (heap) at the vacant place
+  - **Remove**: Reduce the size of the heap by 1
+  - **Heapify**: Heapify the root element again so that we have the highest element at root
+  - Repeat this process
+- **Time Complexity** - **O(nlog(n))**
+- Space Complexity - O(1)
+
+![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/heapsort.gif)
+
+```
+// To heapify a subtree rooted with node i
+// which is an index in arr[].
+void heapify(vector<int>& arr, int n, int i){
+
+    // Initialize largest as root
+    int largest = i;
+
+    // left index = 2*i + 1
+    int l = 2 * i + 1;
+
+    // right index = 2*i + 2
+    int r = 2 * i + 2;
+
+    // If left child is larger than root
+    if (l < n && arr[l] > arr[largest])
+        largest = l;
+
+    // If right child is larger than largest so far
+    if (r < n && arr[r] > arr[largest])
+        largest = r;
+
+    // If largest is not root
+    if (largest != i) {
+        swap(arr[i], arr[largest]);
+
+        // Recursively heapify the affected sub-tree
+        heapify(arr, n, largest);
+    }
+}
+
+// Main function to do heap sort
+void heapSort(vector<int>& arr){
+    int n = arr.size();
+
+    // Build heap (rearrange vector)
+    for (int i = n / 2 - 1; i >= 0; i--)
+        heapify(arr, n, i);
+
+    // One by one extract an element from heap
+    for (int i = n - 1; i > 0; i--) {
+
+        // Move current root to end
+        swap(arr[0], arr[i]);
+
+        // Call max heapify on the reduced heap
+        heapify(arr, i, 0);
+    }
+}
+```
