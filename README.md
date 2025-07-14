@@ -1134,3 +1134,60 @@ void heapSort(vector<int>& arr){
     }
 }
 ```
+
+### Counting Sort
+
+- **Counting Sort** is a sorting algorithm that works by **counting** the number of elements with each unique value. This algorithm is particularly effective for sorting integers over a limited range of values. The time complexity of Counting Sort is **O(n + k)**, where **n** is the number of **elements** in the array and **k** is the **range** of the elements' values.
+
+1. Find the **maximum value** in the array.
+2. Create an auxiliary array count, **from 0 to the maximum value**, and fill it with **zeros**.
+3. **Count** the number of each element in the original array and store this data in the **count array**.
+4. Modify the count array so that each element contains **the sum of the previous counters**. This allows you to determine the positions of the elements in the sorted array.
+5. Create an **output array** output and fill it with the sorted elements using the data from the **count array**.
+6. Copy the sorted elements from the output array to the original array.
+- **Time Complexity** - Best, Average and Worst: **O(n + k)** - There are mainly four main loops
+- Space Complexity - O(max)
+
+![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/count_sort.png)
+
+```
+vector<int> countSort(vector<int>& inputArray)
+{
+
+    int N = inputArray.size();
+
+    // Finding the maximum element of array inputArray[].
+    int M = 0;
+
+    for (int i = 0; i < N; i++)
+        M = max(M, inputArray[i]);
+
+    // Initializing countArray[] with 0
+    vector<int> countArray(M + 1, 0);
+
+    // Mapping each element of inputArray[] as an index
+    // of countArray[] array
+
+    for (int i = 0; i < N; i++)
+        countArray[inputArray[i]]++;
+
+    // Calculating prefix sum at every index
+    // of array countArray[]
+    for (int i = 1; i <= M; i++)
+        countArray[i] += countArray[i - 1];
+
+    // Creating outputArray[] from countArray[] array
+    vector<int> outputArray(N);
+
+    for (int i = N - 1; i >= 0; i--)
+
+    {
+        outputArray[countArray[inputArray[i]] - 1]
+            = inputArray[i];
+
+        countArray[inputArray[i]]--;
+    }
+
+    return outputArray;
+}
+```
