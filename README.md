@@ -1191,3 +1191,84 @@ vector<int> countSort(vector<int>& inputArray)
     return outputArray;
 }
 ```
+
+### Radix Sort
+
+- **Radix Sort** is a non-comparative sorting algorithm that sorts numbers by their **digits**. It works by starting with the **least significant digit** and moving toward the **most significant digit**. **Radix sort** often uses an auxiliary sort, such as **counting sort** or bucket sort, to sort by each digit.
+
+1. Determine the **maximum** value in the array to find out the number of **digits**.
+2. Start with the **least significant digit** (the one).
+3. Use a stable sorting algorithm (such as **counting sort**) to sort the numbers by the current digit.
+4. Move to the next **most significant digit**.
+5. Repeat steps 3-4 until all digits are sorted.
+- **Time Complexity** - Best, Average and Worst: **O(n + k)**
+- Space Complexity - O(max)
+
+![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/radix-sort.gif)
+
+```
+// A utility function to get maximum
+// value in arr[]
+int getMax(int arr[], int n)
+{
+    int mx = arr[0];
+    for (int i = 1; i < n; i++)
+        if (arr[i] > mx)
+            mx = arr[i];
+    return mx;
+}
+
+// A function to do counting sort of arr[]
+// according to the digit
+// represented by exp.
+void countSort(int arr[], int n, int exp)
+{
+
+    // Output array
+    int output[n];
+    int i, count[10] = { 0 };
+
+    // Store count of occurrences
+    // in count[]
+    for (i = 0; i < n; i++)
+        count[(arr[i] / exp) % 10]++;
+
+    // Change count[i] so that count[i]
+    // now contains actual position
+    // of this digit in output[]
+    for (i = 1; i < 10; i++)
+        count[i] += count[i - 1];
+
+    // Build the output array
+    for (i = n - 1; i >= 0; i--) {
+        output[count[(arr[i] / exp) % 10] - 1] = arr[i];
+        count[(arr[i] / exp) % 10]--;
+    }
+
+    // Copy the output array to arr[],
+    // so that arr[] now contains sorted
+    // numbers according to current digit
+    for (i = 0; i < n; i++)
+        arr[i] = output[i];
+}
+
+// The main function to that sorts arr[]
+// of size n using Radix Sort
+void radixsort(int arr[], int n)
+{
+
+    // Find the maximum number to
+    // know number of digits
+    int m = getMax(arr, n);
+
+    // Do counting sort for every digit.
+    // Note that instead of passing digit
+    // number, exp is passed. exp is 10^i
+    // where i is current digit number
+    for (int exp = 1; m / exp > 0; exp *= 10)
+        countSort(arr, n, exp);
+}
+```
+
+## Shell Sort
+
