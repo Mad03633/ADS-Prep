@@ -814,6 +814,7 @@ Basic steps of **Dijkstra's algorithm**:
     <a href="#smooth-sort">Smooth Sort</a> •
     <a href="#tree-sort">Tree Sort</a> •
     <a href="#cube-sort">Cube Sort</a> •
+    <a href="#bucket-sort">Bucket Sort</a>
 </p>
 
 ![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/sorts.jpg)
@@ -1272,3 +1273,155 @@ void radixsort(int arr[], int n)
 
 ## Shell Sort
 
+- **Shell sort** is mainly a variation of Insertion Sort. In insertion sort, we move elements only one position ahead. When an element has to be moved far ahead, many movements are involved. The **idea** is to first sort the elements that are **far from each other**, and then gradually reduce this distance to **1** (then a regular insertion sort is performed, but the array will already be partially sorted).
+
+- **Algorithm**:
+  - Step 1 − Start
+  - Step 2 − Initialize the value of gap size, say h.
+  - Step 3 − Divide the list into smaller sub-part. Each must have equal intervals to h.
+  - Step 4 − Sort these sub-lists using insertion sort.
+  - Step 5 – Repeat this step 2 until the list is sorted.
+  - Step 6 – Print a sorted list.
+  - Step 7 – Stop.
+
+- **Time Complexity**:
+  - **Worst-Case**: (O(n^2))
+  - **Best-Case**: (O(n log n))
+
+```
+/* function to sort arr using shellSort */
+int shellSort(int arr[], int n)
+{
+    // Start with a big gap, then reduce the gap
+    for (int gap = n/2; gap > 0; gap /= 2)
+    {
+        // Do a gapped insertion sort for this gap size.
+        // The first gap elements a[0..gap-1] are already in gapped order
+        // keep adding one more element until the entire array is
+        // gap sorted 
+        for (int i = gap; i < n; i += 1)
+        {
+            // add a[i] to the elements that have been gap sorted
+            // save a[i] in temp and make a hole at position i
+            int temp = arr[i];
+
+            // shift earlier gap-sorted elements up until the correct 
+            // location for a[i] is found
+            int j;            
+            for (j = i; j >= gap && arr[j - gap] > temp; j -= gap)
+                arr[j] = arr[j - gap];
+            
+            //  put temp (the original a[i]) in its correct location
+            arr[j] = temp;
+        }
+    }
+    return 0;
+}
+```
+
+## Smooth Sort
+
+- **Smooth Sort** is an improved version of Heap Sort.
+- **Main Goal**:
+  - Speed up sorting when the array is **partially** sorted.
+  - Heap Sort always has O(n log n) complexity, regardless of the initial order. **Smooth Sort** also works in O(n log n) in the **worst case**, but if the array is almost sorted, it works in almost **O(n)**.
+
+- **Smooth Sort** uses a special structure – **Leonardo heaps** instead of a regular binary heap.
+- **Leonardo numbers** are similar to Fibonacci numbers, but start as:
+  - L(0) = 1
+  - L(1) = 1
+  - L(k) = L(k-1) + L(k-2) + 1
+  - The first numbers are: 1, 1, 3, 5, 9, 15, ...
+
+```
+// Define the Leonardo numbers
+int leonardo(int k)
+{
+    if (k < 2) {
+        return 1;
+    }
+    return leonardo(k - 1) + leonardo(k - 2) + 1;
+}
+
+// Build the Leonardo heap by merging
+// pairs of adjacent trees
+void heapify(vector<int>& arr, int start, int end)
+{
+    int i = start;
+    int j = 0;
+    int k = 0;
+
+    while (k < end - start + 1) {
+        if (k & 0xAAAAAAAA) {
+            j = j + i;
+            i = i >> 1;
+        }
+        else {
+            i = i + j;
+            j = j >> 1;
+        }
+
+        k = k + 1;
+    }
+
+    while (i > 0) {
+        j = j >> 1;
+        k = i + j;
+        while (k < end) {
+            if (arr[k] > arr[k - i]) {
+                break;
+            }
+            swap(arr[k], arr[k - i]);
+            k = k + i;
+        }
+
+        i = j;
+    }
+}
+
+// Smooth Sort function
+vector<int> smooth_sort(vector<int>& arr)
+{
+    int n = arr.size();
+
+    int p = n - 1;
+    int q = p;
+    int r = 0;
+
+    // Build the Leonardo heap by merging
+    // pairs of adjacent trees
+    while (p > 0) {
+        if ((r & 0x03) == 0) {
+            heapify(arr, r, q);
+        }
+
+        if (leonardo(r) == p) {
+            r = r + 1;
+        }
+        else {
+            r = r - 1;
+            q = q - leonardo(r);
+            heapify(arr, r, q);
+            q = r - 1;
+            r = r + 1;
+        }
+
+        swap(arr[0], arr[p]);
+        p = p - 1;
+    }
+
+    // Convert the Leonardo heap
+    // back into an array
+    for (int i = 0; i < n - 1; i++) {
+        int j = i + 1;
+        while (j > 0 && arr[j] < arr[j - 1]) {
+            swap(arr[j], arr[j - 1]);
+            j = j - 1;
+        }
+    }
+
+    return arr;
+}
+```
+
+## Tree Sort
