@@ -1516,3 +1516,73 @@ void bucketSort(float arr[], int n) {
     }
 }
 ```
+
+## Search Algorithms
+
+<p align="center">
+    <a href="#linear-search">Linear Search</a> •
+    <a href="#binary-search">Binary Search</a>
+</p>
+
+### Linear Search
+
+- **Sequential searching algorithm** where we start from **one end** and check **every** element of the list until the desired element is **found**.
+- **Method**:
+  - Start from the **first element** and **compare** it with each element in the array
+  - Return the index if there is a match
+- **Time Complexity** - O(n)
+- Space Complexity - O(1)
+
+![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/linear.gif)
+
+```
+int search(vector<int>& arr, int x) {
+    for (int i = 0; i < arr.size(); i++)
+        if (arr[i] == x)
+            return i;
+    return -1;
+}
+```
+
+### Binary Search
+
+- **Searching algorithm** for finding an **element's position** in a **sorted** array
+- Element is always searched in the **middle** of a portion of an array
+- **Method**:
+  - Set **two pointers** **low** and **high** at the **lowest** and the **highest** positions respectively
+  - Find the **middle element** of the array
+  - If **x > middle** element, **compare x** with the **middle element** of the elements on the **right side** of middle element. This is done by setting low to **low = middle element + 1**
+  - Else, compare x with the middle element of the elements on the **left side** of middle element. This is done by setting high to **high = middle element - 1**
+  - Repeat steps 3 to 6 until low meets high.
+- **Time Complexity**:
+  - **Best**: O(1)
+  - Average: O(log(n))
+  - **Worst**: O(log(n))
+- Space Complexity - O(1)
+
+![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/binary.gif)
+
+```
+// An iterative binary search function.
+int binarySearch(int arr[], int low, int high, int x)
+{
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
+
+        // Check if x is present at mid
+        if (arr[mid] == x)
+            return mid;
+
+        // If x greater, ignore left half
+        if (arr[mid] < x)
+            low = mid + 1;
+
+        // If x is smaller, ignore right half
+        else
+            high = mid - 1;
+    }
+
+    // If we reach here, then element was not present
+    return -1;
+}
+```
