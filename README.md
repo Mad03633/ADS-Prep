@@ -1425,3 +1425,94 @@ vector<int> smooth_sort(vector<int>& arr)
 ```
 
 ## Tree Sort
+
+- **Tree Sort** is a sorting algorithm that uses a **binary search tree (BST)** to sort elements.
+
+- **How does the algorithm work?**:
+  1. Inserting elements into a **BST**
+    - We start with an empty tree.
+    - Insert each array element into the tree, following the BST rule:
+      - If the element is smaller than the current node, go left.
+      - If it is larger, go right.
+
+  2. **In-order** traversal
+    - After constructing the tree, we perform an In-order traversal.
+    - In-order traversal BST always produces a sorted sequence.
+
+- **Time Complexity**:
+  - **Worst-Case**: (O(n^2))
+  - **Best-Case**: (O(n log n))
+
+## Cube Sort
+
+- **Cube Sort** is a rare sorting algorithm based on multidimensional sorting.
+- Designed as a generalization of Bucket Sort / Counting Sort / Radix Sort, but works in 3D (cubic) space.
+- Cube Sort is almost never used in the industry. It is known mainly as an academic algorithm or in problems with high-dimensional data.
+
+- **The main idea**:
+  - If you need to sort data with several keys (for example, (x, y, z)), you can:
+  - Represent the data as a three-dimensional array (cube).
+  - Sort the elements by each of the three coordinates (axes) in turn:
+    - First by x
+    - Then by y
+    - Then by z
+  - This approach ensures ordering by all keys.
+
+- **Time Complexity**: O(n log n)
+
+### Bucket Sort
+
+- Sorting algorithm that divides the unsorted array elements into **several groups (buckets)**
+- Each **bucket** is then **sorted** by using any of the suitable **sorting algorithms** or recursively applying the same bucket algorithm
+- **Method**:
+  - Create an **array** of size **n**. Each slot of this array is used as a **bucket** for storing elements.
+  - Insert elements into the buckets from the array. The elements are inserted according to the range of the bucket.
+  - The elements of each bucket are sorted using any of the stable sorting algorithms
+  - The elements from each bucket are gathered
+- **Time Complexity**:
+  - **Best**: **O(n + k)**
+  - Average: O(n)
+  - **Worst**: **O(n<sup>2</sup>)**
+- Space Complexity - O(n + k)
+
+![](https://github.com/Mad03633/ADS-Prep/blob/main/Media/bucket.webp)
+
+```
+// Insertion sort function to sort individual buckets
+void insertionSort(vector<float>& bucket) {
+    for (int i = 1; i < bucket.size(); ++i) {
+        float key = bucket[i];
+        int j = i - 1;
+        while (j >= 0 && bucket[j] > key) {
+            bucket[j + 1] = bucket[j];
+            j--;
+        }
+        bucket[j + 1] = key;
+    }
+}
+
+// Function to sort arr[] of size n using bucket sort
+void bucketSort(float arr[], int n) {
+    // 1) Create n empty buckets
+    vector<float> b[n];
+
+    // 2) Put array elements in different buckets
+    for (int i = 0; i < n; i++) {
+        int bi = n * arr[i];
+        b[bi].push_back(arr[i]);
+    }
+
+    // 3) Sort individual buckets using insertion sort
+    for (int i = 0; i < n; i++) {
+        insertionSort(b[i]);
+    }
+
+    // 4) Concatenate all buckets into arr[]
+    int index = 0;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < b[i].size(); j++) {
+            arr[index++] = b[i][j];
+        }
+    }
+}
+```
